@@ -46,13 +46,15 @@ export const registerUser = async (req: Request, res: Response) => {
     res.status(201).json({
       success: true,
       message: 'User registered successfully',
-      token,
-      user: {
-        id: user._id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        role: user.role
+      data: {
+        token,
+        user: {
+          id: user._id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          role: user.role
+        }
       }
     });
   } catch (error) {
@@ -101,13 +103,15 @@ export const loginUser = async (req: Request, res: Response) => {
     res.json({
       success: true,
       message: 'Login successful',
-      token,
-      user: {
-        id: user._id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        role: user.role
+      data: {
+        token,
+        user: {
+          id: user._id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          role: user.role
+        }
       }
     });
   } catch (error) {
@@ -134,7 +138,7 @@ export const getProfile = async (req: Request, res: Response) => {
 
     res.json({
       success: true,
-      user
+      data: user
     });
   } catch (error) {
     console.error('Profile fetch error:', error);

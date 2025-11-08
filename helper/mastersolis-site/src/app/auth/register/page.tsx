@@ -66,15 +66,27 @@ const RegisterPage: React.FC = () => {
 
     setLoading(true);
     try {
-      const success = await register(formData);
-      if (success) {
+      console.log('Submitting registration form with data:', formData);
+      const result = await register(formData);
+      if (result.success) {
+        console.log('Registration successful, redirecting to home');
         router.push('/');
       } else {
-        setErrors({ email: 'Registration failed. Please try again.' });
+        console.log('Registration failed:', result.message);
+        const errorMessage = result.message || 'Registration failed. Please try again.';
+        
+        // If user already exists, suggest login
+        if (result.message === 'User already exists') {
+          setErrors({ 
+            email: 'An account with this email already exists. Try logging in instead.' 
+          });
+        } else {
+          setErrors({ email: errorMessage });
+        }
       }
-    } catch (error) {
-      console.error('Registration error:', error);
-      setErrors({ email: 'An error occurred. Please try again.' });
+    } catch (error: any) {
+      console.error('Registration form error:', error);
+      setErrors({ email: 'Registration failed. Please try again.' });
     } finally {
       setLoading(false);
     }

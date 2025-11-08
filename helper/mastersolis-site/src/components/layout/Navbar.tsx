@@ -9,8 +9,19 @@ import { cn } from '@/lib/utils';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const pathname = usePathname();
-  const { user, logout, isAuthenticated, isAdmin } = useAuth();
+  const { user, logout, isAuthenticated, isAdmin, loading } = useAuth();
+  
+  // Ensure we're on client side to prevent hydration mismatch
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
+  // Debug authentication state
+  React.useEffect(() => {
+    console.log('Navbar auth state:', { isAuthenticated, user: user?.firstName, isAdmin });
+  }, [isAuthenticated, user, isAdmin]);
 
   const navLinks = [
     { href: '/', label: 'Home' },
@@ -66,7 +77,13 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            {isAuthenticated ? (
+            {!isClient || loading ? (
+              // Show skeleton/loading state during hydration
+              <div className="flex items-center space-x-2">
+                <div className="h-8 w-16 bg-gray-200 rounded animate-pulse"></div>
+                <div className="h-8 w-20 bg-gray-200 rounded animate-pulse"></div>
+              </div>
+            ) : isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <Link href="/resume-builder">
                   <Button variant="outline" size="sm">
@@ -160,7 +177,13 @@ const Navbar: React.FC = () => {
             
             {/* Mobile Auth Section */}
             <div className="pt-4 pb-2 border-t border-gray-200">
-              {isAuthenticated ? (
+              {!isClient || loading ? (
+                // Show loading state during hydration
+                <div className="space-y-2">
+                  <div className="h-8 bg-gray-200 rounded animate-pulse mx-3"></div>
+                  <div className="h-8 bg-gray-200 rounded animate-pulse mx-3"></div>
+                </div>
+              ) : isAuthenticated ? (
                 <div className="space-y-2">
                   <div className="px-3 py-2 text-sm text-gray-600">
                     Hello, {user?.firstName}

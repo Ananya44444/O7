@@ -48,14 +48,17 @@ const LoginPage: React.FC = () => {
 
     setLoading(true);
     try {
+      console.log('Login form submitted with:', { email: formData.email });
       const success = await login(formData);
       if (success) {
+        console.log('Login successful, redirecting to home');
         router.push('/');
       } else {
-        setErrors({ email: 'Invalid email or password' });
+        console.log('Login failed');
+        setErrors({ email: 'Invalid email or password. Please check your credentials.' });
       }
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('Login form error:', error);
       setErrors({ email: 'An error occurred. Please try again.' });
     } finally {
       setLoading(false);
