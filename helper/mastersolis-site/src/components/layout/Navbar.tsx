@@ -23,6 +23,8 @@ const Navbar: React.FC = () => {
     console.log('Navbar auth state:', { isAuthenticated, user: user?.firstName, isAdmin });
   }, [isAuthenticated, user, isAdmin]);
 
+  const [builderDropdownOpen, setBuilderDropdownOpen] = useState(false);
+  
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
@@ -73,6 +75,55 @@ const Navbar: React.FC = () => {
                 {link.label}
               </Link>
             ))}
+            
+            {/* Builder Dropdown */}
+            {isClient && isAuthenticated && (
+              <div className="relative">
+                <button
+                  className={cn(
+                    'text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors flex items-center space-x-1',
+                    (pathname.startsWith('/builder') || builderDropdownOpen) && 'text-blue-600 border-b-2 border-blue-600'
+                  )}
+                  onClick={() => setBuilderDropdownOpen(!builderDropdownOpen)}
+                  onMouseEnter={() => setBuilderDropdownOpen(true)}
+                >
+                  <span>Builder</span>
+                  <svg
+                    className={cn(
+                      'w-4 h-4 transition-transform',
+                      builderDropdownOpen && 'rotate-180'
+                    )}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                
+                {builderDropdownOpen && (
+                  <div
+                    className="absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50"
+                    onMouseLeave={() => setBuilderDropdownOpen(false)}
+                  >
+                    <Link
+                      href="/builder/email"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                      onClick={() => setBuilderDropdownOpen(false)}
+                    >
+                      📧 Email Templates
+                    </Link>
+                    <Link
+                      href="/builder/resume"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                      onClick={() => setBuilderDropdownOpen(false)}
+                    >
+                      📄 Resume Builder
+                    </Link>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Desktop Auth Buttons */}
@@ -85,11 +136,6 @@ const Navbar: React.FC = () => {
               </div>
             ) : isAuthenticated ? (
               <div className="flex items-center space-x-4">
-                <Link href="/resume-builder">
-                  <Button variant="outline" size="sm">
-                    Resume Builder
-                  </Button>
-                </Link>
                 {isAdmin && (
                   <Link href="/admin">
                     <Button variant="outline" size="sm">
@@ -189,11 +235,18 @@ const Navbar: React.FC = () => {
                     Hello, {user?.firstName}
                   </div>
                   <Link
-                    href="/resume-builder"
+                    href="/builder/email"
                     className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Resume Builder
+                    📧 Email Templates
+                  </Link>
+                  <Link
+                    href="/builder/resume"
+                    className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    📄 Resume Builder
                   </Link>
                   {isAdmin && (
                     <Link
