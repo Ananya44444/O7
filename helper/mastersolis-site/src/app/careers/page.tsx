@@ -255,62 +255,77 @@ export default function CareersPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading job opportunities...</p>
+      <div className="min-h-screen academy-bg flex items-center justify-center relative">
+        <div className="academy-bg-pattern"></div>
+        <div className="text-center relative z-10">
+          <div className="academy-gradient w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+            <svg className="w-8 h-8 text-white animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </div>
+          <p className="academy-text-muted">Loading academy opportunities...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen academy-bg relative">
+      <div className="academy-bg-pattern"></div>
+      
       {/* Hero Section */}
-      <section className="bg-linear-to-r from-blue-600 to-purple-700 text-white py-20">
+      <section className="relative z-10 py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">Join Our Team</h1>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Be part of a mission-driven team that's transforming how people approach their careers. 
-            We're looking for passionate individuals who want to make a real impact.
+          <div className="flex justify-center mb-6">
+            <div className="academy-gradient p-4 rounded-2xl shadow-xl">
+              <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6" />
+              </svg>
+            </div>
+          </div>
+          <h1 className="text-4xl font-bold academy-text-gradient mb-6">Shape the Future of Tech Education</h1>
+          <p className="text-lg academy-text-muted mb-8 max-w-3xl mx-auto leading-relaxed">
+            Join our mission to transform lives through technology education. We're building the academy 
+            that will prepare the next generation of tech professionals.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-bold">{jobs.filter(j => j.isActive).length}</div>
-              <div className="text-sm opacity-90">Open Positions</div>
+            <div className="text-center academy-glass p-4 rounded-xl border academy-border">
+              <div className="text-2xl font-bold academy-text-gradient">{jobs.filter(j => j.isActive).length}</div>
+              <div className="text-xs academy-text-muted">Open Positions</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">50+</div>
-              <div className="text-sm opacity-90">Team Members</div>
+            <div className="text-center academy-glass p-4 rounded-xl border academy-border">
+              <div className="text-2xl font-bold academy-text-gradient">25+</div>
+              <div className="text-xs academy-text-muted">Faculty & Staff</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">5+</div>
-              <div className="text-sm opacity-90">Departments</div>
+            <div className="text-center academy-glass p-4 rounded-xl border academy-border">
+              <div className="text-2xl font-bold academy-text-gradient">6+</div>
+              <div className="text-xs academy-text-muted">Departments</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">95%</div>
-              <div className="text-sm opacity-90">Employee Satisfaction</div>
+            <div className="text-center academy-glass p-4 rounded-xl border academy-border">
+              <div className="text-2xl font-bold academy-text-gradient">98%</div>
+              <div className="text-xs academy-text-muted">Team Satisfaction</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Search and Filters */}
-      <section className="py-12 bg-white">
+      <section className="py-12 relative z-10">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl font-bold academy-text-gradient text-center mb-8">Find Your Role</h2>
             <div className="flex flex-col md:flex-row gap-4 mb-8">
               <Input
                 type="text"
-                placeholder="Search jobs by title, department, or location..."
+                placeholder="Search positions by title, department, or location..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="flex-1"
+                className="flex-1 academy-input"
               />
               <select
                 value={selectedDepartment}
                 onChange={(e) => setSelectedDepartment(e.target.value)}
-                className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="academy-input"
               >
                 {departments.map(dept => (
                   <option key={dept.id} value={dept.id}>{dept.name}</option>
@@ -319,7 +334,7 @@ export default function CareersPage() {
               <select
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value)}
-                className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="academy-input"
               >
                 {jobTypes.map(type => (
                   <option key={type.id} value={type.id}>{type.name}</option>
@@ -331,43 +346,52 @@ export default function CareersPage() {
       </section>
 
       {/* Job Listings */}
-      <section className="py-16">
+      <section className="py-16 relative z-10">
         <div className="container mx-auto px-4">
           {filteredJobs.length > 0 ? (
             <div className="space-y-6 max-w-4xl mx-auto">
               {filteredJobs.map((job) => (
-                <Card key={job._id} className="p-6 hover:shadow-lg transition-shadow">
+                <div key={job._id} className="academy-glass p-6 hover:shadow-2xl transition-all duration-300 border academy-border rounded-xl">
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-3">
-                        <h3 className="text-xl font-semibold">{job.title}</h3>
-                        <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
+                        <h3 className="text-lg font-bold academy-text-primary">{job.title}</h3>
+                        <span className="px-3 py-1 academy-gradient text-white rounded-full text-xs font-medium shadow-lg">
                           {job.type.charAt(0).toUpperCase() + job.type.slice(1).replace('-', ' ')}
                         </span>
                       </div>
                       
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-4">
+                      <div className="flex flex-wrap items-center gap-4 text-sm academy-text-muted mb-4">
                         <span className="flex items-center gap-1">
-                          <span>🏢</span>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                          </svg>
                           {job.department}
                         </span>
                         <span className="flex items-center gap-1">
-                          <span>📍</span>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
                           {job.location}
                         </span>
                         <span className="flex items-center gap-1">
-                          <span>💼</span>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6" />
+                          </svg>
                           {job.experience}
                         </span>
-                        <span className="flex items-center gap-1">
-                          <span>💰</span>
+                        <span className="flex items-center gap-1 academy-text-gradient font-medium">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                          </svg>
                           {formatSalary(job)}
                         </span>
                       </div>
                       
-                      <p className="text-gray-600 mb-4">{job.description}</p>
+                      <p className="academy-text-muted mb-4 text-sm leading-relaxed">{job.description}</p>
                       
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center text-sm academy-text-muted opacity-75">
                         <span>Posted on {formatDate(job.postedAt)}</span>
                         {job.deadline && (
                           <>
@@ -379,25 +403,25 @@ export default function CareersPage() {
                     </div>
                     
                     <div className="mt-4 lg:mt-0 lg:ml-6">
-                      <Button className="w-full lg:w-auto">
+                      <Button className="w-full lg:w-auto academy-btn-primary text-sm">
                         Apply Now
                       </Button>
                     </div>
                   </div>
                   
                   {/* Job Details Preview */}
-                  <div className="mt-6 grid md:grid-cols-3 gap-4 pt-6 border-t border-gray-100">
+                  <div className="mt-6 grid md:grid-cols-3 gap-4 pt-6 border-t academy-border">
                     <div>
-                      <h4 className="font-medium text-sm mb-2">Key Requirements</h4>
-                      <ul className="text-sm text-gray-600 space-y-1">
+                      <h4 className="font-medium text-sm mb-2 academy-text-primary">Key Requirements</h4>
+                      <ul className="text-sm academy-text-muted space-y-1">
                         {job.requirements.slice(0, 2).map((req, index) => (
                           <li key={index} className="flex items-start gap-2">
-                            <span className="text-green-500 mt-0.5">✓</span>
+                            <span className="text-green-400 mt-0.5">✓</span>
                             <span>{req}</span>
                           </li>
                         ))}
                         {job.requirements.length > 2 && (
-                          <li className="text-blue-600 font-medium">
+                          <li className="academy-text-gradient font-medium">
                             +{job.requirements.length - 2} more requirements
                           </li>
                         )}
@@ -405,16 +429,16 @@ export default function CareersPage() {
                     </div>
                     
                     <div>
-                      <h4 className="font-medium text-sm mb-2">Key Responsibilities</h4>
-                      <ul className="text-sm text-gray-600 space-y-1">
+                      <h4 className="font-medium text-sm mb-2 academy-text-primary">Key Responsibilities</h4>
+                      <ul className="text-sm academy-text-muted space-y-1">
                         {job.responsibilities.slice(0, 2).map((resp, index) => (
                           <li key={index} className="flex items-start gap-2">
-                            <span className="text-blue-500 mt-0.5">•</span>
+                            <span className="text-blue-400 mt-0.5">•</span>
                             <span>{resp}</span>
                           </li>
                         ))}
                         {job.responsibilities.length > 2 && (
-                          <li className="text-blue-600 font-medium">
+                          <li className="academy-text-gradient font-medium">
                             +{job.responsibilities.length - 2} more responsibilities
                           </li>
                         )}
@@ -422,28 +446,28 @@ export default function CareersPage() {
                     </div>
                     
                     <div>
-                      <h4 className="font-medium text-sm mb-2">Benefits</h4>
-                      <ul className="text-sm text-gray-600 space-y-1">
+                      <h4 className="font-medium text-sm mb-2 academy-text-primary">Benefits</h4>
+                      <ul className="text-sm academy-text-muted space-y-1">
                         {job.benefits.slice(0, 2).map((benefit, index) => (
                           <li key={index} className="flex items-start gap-2">
-                            <span className="text-purple-500 mt-0.5">★</span>
+                            <span className="text-purple-400 mt-0.5">★</span>
                             <span>{benefit}</span>
                           </li>
                         ))}
                         {job.benefits.length > 2 && (
-                          <li className="text-blue-600 font-medium">
+                          <li className="academy-text-gradient font-medium">
                             +{job.benefits.length - 2} more benefits
                           </li>
                         )}
                       </ul>
                     </div>
                   </div>
-                </Card>
+                </div>
               ))}
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg mb-4">No jobs found matching your criteria.</p>
+              <p className="academy-text-muted text-lg mb-4">No positions found matching your criteria.</p>
               <Button 
                 onClick={() => {
                   setSearchTerm('');
@@ -451,6 +475,7 @@ export default function CareersPage() {
                   setSelectedType('all');
                 }}
                 variant="outline"
+                className="academy-btn-secondary"
               >
                 Clear Filters
               </Button>
@@ -459,70 +484,80 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Company Culture */}
-      <section className="py-16 bg-white">
+      {/* Academy Culture */}
+      <section className="py-16 relative z-10">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Work With Us</h2>
+          <h2 className="text-3xl font-bold academy-text-gradient text-center mb-12">Why Join Our Academy</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: 'Mission-Driven Culture',
-                description: 'Make a real impact on people\'s careers and lives while working on meaningful projects.',
-                icon: '🎯'
+                title: 'Educational Impact',
+                description: 'Transform lives through technology education and help students launch successful careers.',
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                )
               },
               {
-                title: 'Growth & Learning',
-                description: 'Continuous learning opportunities with conferences, courses, and mentorship programs.',
-                icon: '📚'
+                title: 'Continuous Innovation',
+                description: 'Work with cutting-edge curriculum design and the latest educational technologies.',
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                )
               },
               {
-                title: 'Work-Life Balance',
-                description: 'Flexible schedules, remote work options, and unlimited PTO to maintain your well-being.',
-                icon: '⚖️'
+                title: 'Flexible Environment',
+                description: 'Remote work options, flexible schedules, and a culture that values work-life balance.',
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                )
               },
               {
-                title: 'Inclusive Environment',
-                description: 'Diverse and inclusive workplace where everyone\'s voice is heard and valued.',
-                icon: '🤝'
+                title: 'Collaborative Team',
+                description: 'Join a diverse community of educators, developers, and innovators passionate about tech.',
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                )
               },
               {
-                title: 'Innovation Focus',
-                description: 'Work with cutting-edge technologies and contribute to innovative solutions.',
-                icon: '🚀'
+                title: 'Professional Growth',
+                description: 'Access to training, conferences, certifications, and mentorship opportunities.',
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                )
               },
               {
-                title: 'Competitive Benefits',
-                description: 'Comprehensive health benefits, equity packages, and performance-based bonuses.',
-                icon: '💎'
+                title: 'Competitive Package',
+                description: 'Excellent compensation, comprehensive benefits, and performance-based incentives.',
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                  </svg>
+                )
               }
             ].map((benefit, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-lg transition-shadow">
-                <div className="text-4xl mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-semibold mb-3">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
-              </Card>
+              <div key={index} className="academy-glass p-6 text-center hover:shadow-2xl transition-all duration-300 border academy-border rounded-xl">
+                <div className="academy-gradient w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  {benefit.icon}
+                </div>
+                <h3 className="text-lg font-bold academy-text-primary mb-3">{benefit.title}</h3>
+                <p className="academy-text-muted text-sm leading-relaxed">{benefit.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-linear-to-r from-blue-600 to-purple-700 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Don't See the Perfect Role?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            We're always looking for exceptional talent. Send us your resume and let us know how you'd like to contribute to our mission.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-white text-blue-600 hover:bg-gray-100">
-              Submit General Application
-            </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
-              Learn About Our Culture
-            </Button>
-          </div>
-        </div>
-      </section>
+      
     </div>
   );
 }

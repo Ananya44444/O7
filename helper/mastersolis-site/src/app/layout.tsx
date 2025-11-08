@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased min-h-screen bg-white`}>
+      <body className={`${inter.variable} font-sans antialiased min-h-screen bg-linear-to-br from-gray-900 via-black to-gray-800 text-white`}>
         <AuthProvider>
           <div className="flex flex-col min-h-screen">
             <Navbar />

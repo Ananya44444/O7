@@ -29,84 +29,85 @@ export default function ProjectsPage() {
   const mockProjects: Project[] = [
     {
       _id: '1',
-      title: 'AI-Powered Resume Builder',
-      description: 'Intelligent resume creation platform with ATS optimization and real-time feedback.',
-      summary: 'A comprehensive resume building platform that uses AI to optimize content for ATS systems.',
-      technologies: ['Next.js', 'TypeScript', 'OpenAI API', 'TailwindCSS', 'MongoDB'],
+      title: 'E-Commerce Platform',
+      description: 'Full-stack e-commerce application with payment integration and admin dashboard.',
+      summary: 'Capstone project featuring React frontend, Node.js backend, Stripe payments, and inventory management.',
+      technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe API'],
       category: 'web-app',
       status: 'completed',
-      startDate: '2024-01-15',
-      endDate: '2024-03-20',
-      clientName: 'MasterSolis Internal',
-      projectUrl: 'https://resume.mastersolis.com',
+      startDate: '2024-07-15',
+      endDate: '2024-09-20',
+      clientName: 'Full-Stack Bootcamp Graduate',
+      projectUrl: 'https://ecommerce-demo.academy.com',
       images: [],
       isPublic: true
     },
     {
       _id: '2',
-      title: 'Corporate Talent Dashboard',
-      description: 'Enterprise-grade recruitment management system with advanced analytics.',
-      summary: 'Complete recruitment workflow management with candidate tracking and analytics.',
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'AWS'],
-      category: 'enterprise',
+      title: 'Data Analytics Dashboard',
+      description: 'Interactive dashboard analyzing customer behavior and sales trends with ML predictions.',
+      summary: 'Advanced analytics project using Python, Pandas, and machine learning for business insights.',
+      technologies: ['Python', 'Pandas', 'Scikit-learn', 'Plotly', 'Streamlit'],
+      category: 'data-science',
       status: 'completed',
-      startDate: '2023-08-01',
-      endDate: '2023-12-15',
-      clientName: 'TechCorp Global',
+      startDate: '2024-06-01',
+      endDate: '2024-08-15',
+      clientName: 'Data Science Program Graduate',
       images: [],
       isPublic: true
     },
     {
       _id: '3',
-      title: 'Career Guidance Mobile App',
-      description: 'Mobile application for career counseling and job matching on-the-go.',
-      summary: 'Native mobile app connecting job seekers with career counselors and opportunities.',
-      technologies: ['React Native', 'Firebase', 'Redux', 'Expo', 'Socket.io'],
+      title: 'Social Media Management App',
+      description: 'Mobile application for scheduling and analyzing social media posts across platforms.',
+      summary: 'Cross-platform mobile app with social media API integration and analytics features.',
+      technologies: ['React Native', 'Firebase', 'Redux', 'Social APIs', 'Chart.js'],
       category: 'mobile-app',
       status: 'in-progress',
       startDate: '2024-09-01',
-      clientName: 'CareerPath Inc',
+      clientName: 'Digital Marketing Student',
       images: [],
       isPublic: true
     },
     {
       _id: '4',
-      title: 'Blockchain Certification Platform',
-      description: 'Decentralized platform for verifiable professional certifications and achievements.',
-      summary: 'Blockchain-based system for issuing and verifying professional credentials.',
-      technologies: ['Ethereum', 'Solidity', 'Web3.js', 'IPFS', 'React'],
-      category: 'blockchain',
+      title: 'Smart Home IoT System',
+      description: 'IoT-based home automation system with web dashboard and mobile control.',
+      summary: 'End-to-end IoT solution combining hardware sensors, cloud backend, and user interfaces.',
+      technologies: ['Arduino', 'Raspberry Pi', 'AWS IoT', 'React', 'MQTT'],
+      category: 'iot',
       status: 'completed',
-      startDate: '2023-11-01',
-      endDate: '2024-02-28',
-      clientName: 'CertifyChain',
+      startDate: '2024-05-01',
+      endDate: '2024-07-30',
+      clientName: 'DevOps Program Graduate',
       images: [],
       isPublic: true
     },
     {
       _id: '5',
-      title: 'Interview Preparation Platform',
-      description: 'Interactive platform for mock interviews with AI feedback and coaching.',
-      summary: 'Comprehensive interview preparation with AI-powered feedback and improvement suggestions.',
-      technologies: ['Vue.js', 'Python', 'FastAPI', 'WebRTC', 'TensorFlow'],
-      category: 'web-app',
+      title: 'Design System & Portfolio',
+      description: 'Comprehensive design system with component library and personal portfolio website.',
+      summary: 'Complete UI/UX project showcasing design thinking process and implementation skills.',
+      technologies: ['Figma', 'React', 'Storybook', 'Styled Components', 'Framer Motion'],
+      category: 'design',
       status: 'completed',
-      startDate: '2024-04-01',
-      endDate: '2024-07-15',
-      clientName: 'InterviewAce',
+      startDate: '2024-08-01',
+      endDate: '2024-10-15',
+      clientName: 'UI/UX Design Graduate',
       images: [],
       isPublic: true
     },
     {
       _id: '6',
-      title: 'HR Analytics Dashboard',
-      description: 'Advanced analytics platform for HR teams to optimize recruitment strategies.',
-      summary: 'Data-driven insights platform for improving hiring efficiency and candidate experience.',
-      technologies: ['Angular', 'Python', 'Django', 'D3.js', 'Redis'],
-      category: 'analytics',
-      status: 'in-progress',
-      startDate: '2024-10-01',
-      clientName: 'HR Insights Co',
+      title: 'Predictive Maintenance AI',
+      description: 'Machine learning model predicting equipment failures using sensor data analysis.',
+      summary: 'Industrial AI application combining time-series analysis and deep learning for maintenance optimization.',
+      technologies: ['Python', 'TensorFlow', 'Keras', 'Time Series', 'Docker'],
+      category: 'ai-ml',
+      status: 'completed',
+      startDate: '2024-09-01',
+      endDate: '2024-11-20',
+      clientName: 'AI/ML Specialization Student',
       images: [],
       isPublic: true
     }
@@ -114,11 +115,12 @@ export default function ProjectsPage() {
 
   const categories = [
     { id: 'all', name: 'All Projects', icon: '🎯' },
-    { id: 'web-app', name: 'Web Applications', icon: '🌐' },
+    { id: 'web-app', name: 'Web Development', icon: '🌐' },
     { id: 'mobile-app', name: 'Mobile Apps', icon: '📱' },
-    { id: 'enterprise', name: 'Enterprise Solutions', icon: '🏢' },
-    { id: 'blockchain', name: 'Blockchain', icon: '⛓️' },
-    { id: 'analytics', name: 'Analytics & BI', icon: '📊' }
+    { id: 'data-science', name: 'Data Science', icon: '📊' },
+    { id: 'design', name: 'UI/UX Design', icon: '�' },
+    { id: 'ai-ml', name: 'AI & Machine Learning', icon: '🤖' },
+    { id: 'iot', name: 'IoT & DevOps', icon: '⚡' }
   ];
 
   const statusColors = {
@@ -148,61 +150,76 @@ export default function ProjectsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading projects...</p>
+      <div className="min-h-screen academy-bg flex items-center justify-center relative">
+        <div className="academy-bg-pattern"></div>
+        <div className="text-center relative z-10">
+          <div className="academy-gradient w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+            <svg className="w-8 h-8 text-white animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </div>
+          <p className="academy-text-muted">Loading student projects...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen academy-bg relative">
+      <div className="academy-bg-pattern"></div>
+      
       {/* Hero Section */}
-      <section className="bg-linear-to-r from-blue-600 to-purple-700 text-white py-20">
+      <section className="relative z-10 py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">Our Projects</h1>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Explore our portfolio of successful projects spanning web applications, mobile apps, 
-            enterprise solutions, and cutting-edge technology implementations.
+          <div className="flex justify-center mb-6">
+            <div className="academy-gradient p-4 rounded-2xl shadow-xl">
+              <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
+          </div>
+          <h1 className="text-4xl font-bold academy-text-gradient mb-6">Student Showcase</h1>
+          <p className="text-lg academy-text-muted mb-8 max-w-3xl mx-auto leading-relaxed">
+            Discover incredible projects built by our bootcamp graduates. These real-world applications 
+            demonstrate the skills and creativity developed through our intensive programs.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-bold">50+</div>
-              <div className="text-sm opacity-90">Projects Completed</div>
+            <div className="text-center academy-glass p-4 rounded-xl border academy-border">
+              <div className="text-2xl font-bold academy-text-gradient">200+</div>
+              <div className="text-xs academy-text-muted">Projects Built</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">25+</div>
-              <div className="text-sm opacity-90">Happy Clients</div>
+            <div className="text-center academy-glass p-4 rounded-xl border academy-border">
+              <div className="text-2xl font-bold academy-text-gradient">150+</div>
+              <div className="text-xs academy-text-muted">Graduates Employed</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">15+</div>
-              <div className="text-sm opacity-90">Technologies</div>
+            <div className="text-center academy-glass p-4 rounded-xl border academy-border">
+              <div className="text-2xl font-bold academy-text-gradient">12+</div>
+              <div className="text-xs academy-text-muted">Technologies Mastered</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">5+</div>
-              <div className="text-sm opacity-90">Years Experience</div>
+            <div className="text-center academy-glass p-4 rounded-xl border academy-border">
+              <div className="text-2xl font-bold academy-text-gradient">95%</div>
+              <div className="text-xs academy-text-muted">Success Rate</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Categories Filter */}
-      <section className="py-12 bg-white">
+      <section className="py-12 relative z-10">
         <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold academy-text-gradient text-center mb-8">Filter by Program</h2>
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center space-x-2 px-6 py-3 rounded-full font-medium transition-all ${
+                className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all text-sm ${
                   selectedCategory === category.id
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'academy-gradient text-white shadow-xl'
+                    : 'academy-glass academy-text-muted hover:shadow-lg border academy-border'
                 }`}
               >
-                <span>{category.icon}</span>
+                <span className="text-lg">{category.icon}</span>
                 <span>{category.name}</span>
               </button>
             ))}
@@ -211,14 +228,15 @@ export default function ProjectsPage() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-16">
+      <section className="py-16 relative z-10">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
-              <Card key={project._id} className="overflow-hidden hover:shadow-xl transition-shadow">
+              <div key={project._id} className="academy-glass overflow-hidden hover:shadow-2xl transition-all duration-300 border academy-border rounded-xl">
                 {/* Project Image Placeholder */}
-                <div className="h-48 bg-linear-to-br from-blue-100 to-purple-100 flex items-center justify-center">
-                  <span className="text-4xl">
+                <div className="h-48 academy-gradient flex items-center justify-center relative">
+                  <div className="absolute inset-0 bg-black/20"></div>
+                  <span className="text-4xl relative z-10 text-white">
                     {categories.find(cat => cat.id === project.category)?.icon || '🎯'}
                   </span>
                 </div>
@@ -227,23 +245,25 @@ export default function ProjectsPage() {
                   {/* Status and Date */}
                   <div className="flex items-center justify-between mb-3">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      statusColors[project.status as keyof typeof statusColors]
+                      project.status === 'completed' ? 'bg-green-500/20 text-green-400' : 
+                      project.status === 'in-progress' ? 'bg-blue-500/20 text-blue-400' :
+                      'bg-yellow-500/20 text-yellow-400'
                     }`}>
                       {project.status.charAt(0).toUpperCase() + project.status.slice(1).replace('-', ' ')}
                     </span>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-xs academy-text-muted">
                       {formatDate(project.startDate)}
                       {project.endDate && ` - ${formatDate(project.endDate)}`}
                     </span>
                   </div>
 
                   {/* Project Info */}
-                  <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-                  <p className="text-gray-600 mb-4 text-sm line-clamp-3">{project.summary}</p>
+                  <h3 className="text-lg font-bold academy-text-primary mb-3">{project.title}</h3>
+                  <p className="academy-text-muted mb-4 text-sm leading-relaxed line-clamp-3">{project.summary}</p>
 
-                  {/* Client */}
+                  {/* Creator */}
                   {project.clientName && (
-                    <p className="text-sm text-blue-600 mb-4">Client: {project.clientName}</p>
+                    <p className="text-sm academy-text-gradient mb-4 font-medium">Built by: {project.clientName}</p>
                   )}
 
                   {/* Technologies */}
@@ -252,13 +272,13 @@ export default function ProjectsPage() {
                       {project.technologies.slice(0, 3).map((tech, index) => (
                         <span
                           key={index}
-                          className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs"
+                          className="px-2 py-1 academy-glass text-xs academy-text-primary border academy-border rounded"
                         >
                           {tech}
                         </span>
                       ))}
                       {project.technologies.length > 3 && (
-                        <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
+                        <span className="px-2 py-1 academy-glass text-xs academy-text-muted border academy-border rounded">
                           +{project.technologies.length - 3} more
                         </span>
                       )}
@@ -267,73 +287,29 @@ export default function ProjectsPage() {
 
                   {/* Action Buttons */}
                   <div className="flex gap-3">
-                    <Button className="flex-1" size="sm">
-                      View Details
+                    <Button className="flex-1 academy-btn-primary text-xs" size="sm">
+                      View Project
                     </Button>
                     {project.projectUrl && (
-                      <Button variant="outline" size="sm">
+                      <Button variant="outline" className="academy-btn-secondary text-xs" size="sm">
                         Live Demo
                       </Button>
                     )}
                   </div>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
 
           {filteredProjects.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">No projects found in this category.</p>
+              <p className="academy-text-muted text-lg">No projects found in this category.</p>
             </div>
           )}
         </div>
       </section>
 
-      {/* Technologies Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Technologies We Use</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-            {[
-              { name: 'React', icon: '⚛️' },
-              { name: 'Next.js', icon: '🔄' },
-              { name: 'Node.js', icon: '💚' },
-              { name: 'TypeScript', icon: '📘' },
-              { name: 'Python', icon: '🐍' },
-              { name: 'MongoDB', icon: '🍃' },
-              { name: 'PostgreSQL', icon: '🐘' },
-              { name: 'AWS', icon: '☁️' },
-              { name: 'Docker', icon: '🐳' },
-              { name: 'Blockchain', icon: '⛓️' },
-              { name: 'AI/ML', icon: '🤖' },
-              { name: 'Mobile', icon: '📱' }
-            ].map((tech, index) => (
-              <Card key={index} className="p-4 text-center hover:shadow-md transition-shadow">
-                <div className="text-2xl mb-2">{tech.icon}</div>
-                <div className="text-sm font-medium">{tech.name}</div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-linear-to-r from-blue-600 to-purple-700 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Have a Project in Mind?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Let's discuss how we can bring your ideas to life with our expertise and proven track record.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-white text-blue-600 hover:bg-gray-100">
-              Start Your Project
-            </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
-              View Case Studies
-            </Button>
-          </div>
-        </div>
-      </section>
+      
     </div>
   );
 }

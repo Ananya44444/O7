@@ -48,31 +48,42 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50">
+    <nav className="academy-glass sticky top-0 z-50 border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-between h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">MS</span>
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div className="relative">
+                <div className="w-12 h-12 academy-btn-primary rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-white font-bold text-xl">🎓</span>
+                </div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
               </div>
-              <span className="text-xl font-bold text-gray-900">MasterSolis</span>
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold academy-text-gradient">MasterSolis</span>
+                <span className="text-xs text-academy-text-muted -mt-1">Academy</span>
+              </div>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  'text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors',
-                  isActive(link.href) && 'text-blue-600 border-b-2 border-blue-600'
+                  'relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-xl group',
+                  isActive(link.href)
+                    ? 'text-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg'
+                    : 'text-academy-text-secondary hover:text-white hover:bg-white/10 academy-focus'
                 )}
               >
                 {link.label}
+                {isActive(link.href) && (
+                  <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-yellow-400 rounded-full"></div>
+                )}
               </Link>
             ))}
             
@@ -81,16 +92,18 @@ const Navbar: React.FC = () => {
               <div className="relative">
                 <button
                   className={cn(
-                    'text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors flex items-center space-x-1',
-                    (pathname.startsWith('/builder') || builderDropdownOpen) && 'text-blue-600 border-b-2 border-blue-600'
+                    'relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-xl group flex items-center space-x-2',
+                    (pathname.startsWith('/builder') || builderDropdownOpen)
+                      ? 'text-white bg-linear-to-r from-purple-500 to-pink-600 shadow-lg'
+                      : 'text-academy-text-secondary hover:text-white hover:bg-white/10 academy-focus'
                   )}
                   onClick={() => setBuilderDropdownOpen(!builderDropdownOpen)}
                   onMouseEnter={() => setBuilderDropdownOpen(true)}
                 >
-                  <span>Builder</span>
+                  <span>🛠️ Builder</span>
                   <svg
                     className={cn(
-                      'w-4 h-4 transition-transform',
+                      'w-4 h-4 transition-transform duration-300',
                       builderDropdownOpen && 'rotate-180'
                     )}
                     fill="none"
@@ -103,22 +116,34 @@ const Navbar: React.FC = () => {
                 
                 {builderDropdownOpen && (
                   <div
-                    className="absolute left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50"
+                    className="absolute left-0 mt-2 w-56 academy-glass-card rounded-2xl py-3 z-50 academy-slide-in"
                     onMouseLeave={() => setBuilderDropdownOpen(false)}
                   >
                     <Link
                       href="/builder/email"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                      className="block px-4 py-3 text-sm text-academy-text-secondary hover:text-white hover:bg-linear-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-300 mx-2 rounded-xl"
                       onClick={() => setBuilderDropdownOpen(false)}
                     >
-                      📧 Email Templates
+                      <div className="flex items-center space-x-3">
+                        <span className="text-lg">📧</span>
+                        <div>
+                          <div className="font-medium">Email Templates</div>
+                          <div className="text-xs text-academy-text-muted">Create professional emails</div>
+                        </div>
+                      </div>
                     </Link>
                     <Link
                       href="/builder/resume"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                      className="block px-4 py-3 text-sm text-academy-text-secondary hover:text-white hover:bg-linear-to-r hover:from-purple-500/20 hover:to-pink-500/20 transition-all duration-300 mx-2 rounded-xl"
                       onClick={() => setBuilderDropdownOpen(false)}
                     >
-                      📄 Resume Builder
+                      <div className="flex items-center space-x-3">
+                        <span className="text-lg">📄</span>
+                        <div>
+                          <div className="font-medium">Resume Builder</div>
+                          <div className="text-xs text-academy-text-muted">Build your perfect resume</div>
+                        </div>
+                      </div>
                     </Link>
                   </div>
                 )}
@@ -127,41 +152,50 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             {!isClient || loading ? (
               // Show skeleton/loading state during hydration
-              <div className="flex items-center space-x-2">
-                <div className="h-8 w-16 bg-gray-200 rounded animate-pulse"></div>
-                <div className="h-8 w-20 bg-gray-200 rounded animate-pulse"></div>
+              <div className="flex items-center space-x-3">
+                <div className="h-10 w-20 bg-white/20 rounded-xl animate-pulse"></div>
+                <div className="h-10 w-24 bg-white/20 rounded-xl animate-pulse"></div>
               </div>
             ) : isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 {isAdmin && (
                   <Link href="/admin">
-                    <Button variant="outline" size="sm">
-                      Admin
+                    <Button className="academy-btn-secondary h-10 px-4 rounded-xl font-medium">
+                      👨‍💼 Admin
                     </Button>
                   </Link>
                 )}
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm text-gray-600">
-                    Hello, {user?.firstName}
-                  </span>
-                  <Button variant="ghost" size="sm" onClick={handleLogout}>
-                    Logout
+                <div className="flex items-center space-x-3">
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-academy-text-primary">
+                      {user?.firstName} {user?.lastName}
+                    </div>
+                    <div className="text-xs text-academy-text-muted">Student</div>
+                  </div>
+                  <div className="w-10 h-10 academy-btn-primary rounded-full flex items-center justify-center text-lg">
+                    👤
+                  </div>
+                  <Button 
+                    className="academy-btn-secondary h-10 px-4 rounded-xl font-medium hover:text-red-400"
+                    onClick={handleLogout}
+                  >
+                    🚪 Logout
                   </Button>
                 </div>
               </div>
             ) : (
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-3">
                 <Link href="/auth/login">
-                  <Button variant="ghost" size="sm">
-                    Login
+                  <Button className="academy-btn-secondary h-10 px-6 rounded-xl font-medium">
+                    🔑 Login
                   </Button>
                 </Link>
                 <Link href="/auth/register">
-                  <Button size="sm">
-                    Sign Up
+                  <Button className="academy-btn-primary h-10 px-6 rounded-xl font-medium">
+                    🎓 Join Academy
                   </Button>
                 </Link>
               </div>
@@ -169,29 +203,28 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <Button
-              variant="ghost"
-              size="icon"
+              className="academy-btn-secondary w-12 h-12 rounded-2xl academy-focus"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
               <div className="w-6 h-6 flex flex-col justify-center items-center">
                 <span
                   className={cn(
-                    'bg-gray-600 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm',
+                    'bg-academy-text-primary block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm',
                     isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'
                   )}
                 ></span>
                 <span
                   className={cn(
-                    'bg-gray-600 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5',
+                    'bg-academy-text-primary block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5',
                     isMenuOpen ? 'opacity-0' : 'opacity-100'
                   )}
                 ></span>
                 <span
                   className={cn(
-                    'bg-gray-600 block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm',
+                    'bg-academy-text-primary block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm',
                     isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'
                   )}
                 ></span>
@@ -203,17 +236,17 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div className="lg:hidden academy-glass-card border-t border-white/10 academy-slide-in">
+          <div className="px-4 pt-4 pb-6 space-y-3">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  'block px-3 py-2 text-base font-medium rounded-md transition-colors',
+                  'block px-4 py-3 text-base font-medium rounded-2xl transition-all duration-300',
                   isActive(link.href)
-                    ? 'text-blue-600 bg-blue-50'
-                    : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                    ? 'text-white bg-linear-to-r from-blue-500 to-purple-600 shadow-lg'
+                    : 'text-academy-text-secondary hover:text-white hover:bg-white/10'
                 )}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -222,28 +255,38 @@ const Navbar: React.FC = () => {
             ))}
             
             {/* Mobile Auth Section */}
-            <div className="pt-4 pb-2 border-t border-gray-200">
+            <div className="pt-4 mt-4 border-t border-white/10">
               {!isClient || loading ? (
                 // Show loading state during hydration
-                <div className="space-y-2">
-                  <div className="h-8 bg-gray-200 rounded animate-pulse mx-3"></div>
-                  <div className="h-8 bg-gray-200 rounded animate-pulse mx-3"></div>
+                <div className="space-y-3">
+                  <div className="h-12 bg-white/20 rounded-2xl animate-pulse mx-1"></div>
+                  <div className="h-12 bg-white/20 rounded-2xl animate-pulse mx-1"></div>
                 </div>
               ) : isAuthenticated ? (
-                <div className="space-y-2">
-                  <div className="px-3 py-2 text-sm text-gray-600">
-                    Hello, {user?.firstName}
+                <div className="space-y-3">
+                  <div className="px-4 py-3 rounded-2xl bg-white/5">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 academy-btn-primary rounded-full flex items-center justify-center text-lg">
+                        👤
+                      </div>
+                      <div>
+                        <div className="text-sm font-medium text-academy-text-primary">
+                          {user?.firstName} {user?.lastName}
+                        </div>
+                        <div className="text-xs text-academy-text-muted">Student</div>
+                      </div>
+                    </div>
                   </div>
                   <Link
                     href="/builder/email"
-                    className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                    className="block px-4 py-3 text-base font-medium text-academy-text-secondary hover:text-white hover:bg-linear-to-r hover:from-blue-500/20 hover:to-purple-500/20 rounded-2xl transition-all duration-300"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     📧 Email Templates
                   </Link>
                   <Link
                     href="/builder/resume"
-                    className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                    className="block px-4 py-3 text-base font-medium text-academy-text-secondary hover:text-white hover:bg-linear-to-r hover:from-purple-500/20 hover:to-pink-500/20 rounded-2xl transition-all duration-300"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     📄 Resume Builder
@@ -251,34 +294,34 @@ const Navbar: React.FC = () => {
                   {isAdmin && (
                     <Link
                       href="/admin"
-                      className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                      className="block px-4 py-3 text-base font-medium text-academy-text-secondary hover:text-white hover:bg-white/10 rounded-2xl transition-all duration-300"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      Admin Dashboard
+                      👨‍💼 Admin Dashboard
                     </Link>
                   )}
                   <button
-                    className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                    className="block w-full text-left px-4 py-3 text-base font-medium text-academy-text-secondary hover:text-red-400 hover:bg-red-500/10 rounded-2xl transition-all duration-300"
                     onClick={handleLogout}
                   >
-                    Logout
+                    🚪 Logout
                   </button>
                 </div>
               ) : (
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <Link
                     href="/auth/login"
-                    className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                    className="block px-4 py-3 text-base font-medium text-center text-academy-text-secondary hover:text-white hover:bg-white/10 rounded-2xl transition-all duration-300 border border-white/20"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Login
+                    🔑 Login
                   </Link>
                   <Link
                     href="/auth/register"
-                    className="block px-3 py-2 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md"
+                    className="block px-4 py-3 text-base font-medium text-center text-white academy-btn-primary rounded-2xl shadow-lg"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Sign Up
+                    🎓 Join Academy
                   </Link>
                 </div>
               )}

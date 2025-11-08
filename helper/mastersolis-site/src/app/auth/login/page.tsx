@@ -76,26 +76,35 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen academy-bg flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative">
+      <div className="academy-bg-pattern"></div>
+      <div className="max-w-md w-full relative z-10">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Welcome back</h1>
-          <p className="mt-2 text-gray-600">
-            Sign in to your MasterSolis account
+          {/* Academy Logo with Animation */}
+          <div className="flex justify-center mb-6">
+            <div className="academy-gradient p-4 rounded-2xl shadow-xl">
+              <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.80a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+              </svg>
+            </div>
+          </div>
+          <h1 className="text-4xl font-bold academy-text-gradient mb-2">Welcome Back</h1>
+          <p className="academy-text-muted text-lg">
+            Continue your learning journey at MasterSolis Academy
           </p>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Sign In</CardTitle>
-            <CardDescription>
-              Enter your credentials to access your account
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="academy-glass-card p-8 rounded-3xl">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-white mb-2">Sign In</h2>
+            <p className="academy-text-muted">
+              Enter your credentials to access your learning dashboard
+            </p>
+          </div>
+          
+          <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-white mb-3">
                   Email Address
                 </label>
                 <Input
@@ -104,16 +113,19 @@ const LoginPage: React.FC = () => {
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Enter your email"
-                  className={errors.email ? 'border-red-500' : ''}
+                  placeholder="Enter your academy email"
+                  className={`academy-input h-12 ${errors.email ? 'border-red-400' : ''}`}
                 />
                 {errors.email && (
-                  <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                  <p className="mt-2 text-sm text-red-400 flex items-center space-x-1">
+                    <span>⚠️</span>
+                    <span>{errors.email}</span>
+                  </p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="password" className="block text-sm font-medium text-white mb-3">
                   Password
                 </label>
                 <div className="relative">
@@ -123,21 +135,24 @@ const LoginPage: React.FC = () => {
                     type={showPassword ? 'text' : 'password'}
                     value={formData.password}
                     onChange={handleChange}
-                    placeholder="Enter your password"
-                    className={errors.password ? 'border-red-500' : ''}
+                    placeholder="Enter your secure password"
+                    className={`academy-input h-12 pr-12 ${errors.password ? 'border-red-400' : ''}`}
                   />
                   <button
                     type="button"
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center"
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    <span className="text-gray-400 hover:text-gray-600">
+                    <span className="academy-text-muted hover:text-white transition-colors">
                       {showPassword ? '👁️' : '🙈'}
                     </span>
                   </button>
                 </div>
                 {errors.password && (
-                  <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+                  <p className="mt-2 text-sm text-red-400 flex items-center space-x-1">
+                    <span>⚠️</span>
+                    <span>{errors.password}</span>
+                  </p>
                 )}
               </div>
 
@@ -147,39 +162,51 @@ const LoginPage: React.FC = () => {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-academy-primary focus:ring-academy-primary border-academy-dark-light rounded"
                   />
-                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+                  <label htmlFor="remember-me" className="ml-3 block text-sm academy-text-muted">
                     Remember me
                   </label>
                 </div>
 
                 <div className="text-sm">
-                  <Link href="/auth/forgot-password" className="text-blue-600 hover:text-blue-500">
-                    Forgot your password?
+                  <Link href="/auth/forgot-password" className="academy-gradient-text hover:opacity-80 transition-opacity">
+                    Forgot password?
                   </Link>
                 </div>
               </div>
 
               <Button
                 type="submit"
-                className="w-full"
+                className="w-full academy-btn-primary h-12 text-lg font-semibold"
                 disabled={loading}
               >
-                {loading ? 'Signing in...' : 'Sign In'}
+                {loading ? (
+                  <div className="flex items-center space-x-2">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    <span>Signing in...</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center space-x-2">
+                    <span>Access Learning Dashboard</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                )}
               </Button>
             </form>
 
-            <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
+            <div className="mt-8 text-center">
+              <p className="academy-text-muted">
                 Don't have an account?{' '}
-                <Link href="/auth/register" className="text-blue-600 hover:text-blue-500 font-medium">
-                  Sign up here
+                <Link href="/auth/register" className="academy-gradient-text font-medium hover:opacity-80 transition-opacity">
+                  Start your learning journey
                 </Link>
               </p>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

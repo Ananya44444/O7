@@ -155,59 +155,78 @@ const EmailBuilder: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Email Template Builder</h1>
-          <p className="text-gray-600">Choose a template and customize it for your needs</p>
+    <div className="min-h-screen academy-bg py-8 relative">
+      <div className="academy-bg-pattern"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-12">
+          <div className="flex justify-center mb-6">
+            <div className="academy-gradient p-4 rounded-2xl shadow-xl">
+              <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+              </svg>
+            </div>
+          </div>
+          <h1 className="text-5xl font-bold academy-text-gradient mb-4">Email Builder Academy</h1>
+          <p className="academy-text-muted text-xl max-w-3xl mx-auto">Master professional communication with our academy-powered email templates and customization tools</p>
         </div>
 
         {!selectedTemplate ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {emailTemplates.map((template) => (
-              <Card 
+              <div 
                 key={template.id} 
-                className="cursor-pointer hover:shadow-lg transition-shadow border-2 hover:border-blue-500"
+                className="academy-glass-card cursor-pointer hover:scale-105 transition-all duration-300 p-6 rounded-3xl group"
                 onClick={() => handleTemplateSelect(template)}
               >
-                <CardHeader className="text-center">
-                  <div className="text-4xl mb-2">{template.icon}</div>
-                  <CardTitle className="text-lg">{template.title}</CardTitle>
-                  <CardDescription>{template.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <Button className="w-full">Select Template</Button>
-                </CardContent>
-              </Card>
+                <div className="text-center">
+                  <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">{template.icon}</div>
+                  <h3 className="text-xl font-bold text-white mb-3">{template.title}</h3>
+                  <p className="academy-text-muted leading-relaxed mb-6">{template.description}</p>
+                  <Button className="academy-btn-primary w-full py-3">
+                    <span>Choose Template</span>
+                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Button>
+                </div>
+              </div>
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {/* Form Section */}
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">
-                  {selectedTemplate.icon} {selectedTemplate.title}
-                </h2>
+                <div className="flex items-center space-x-3">
+                  <span className="text-3xl">{selectedTemplate.icon}</span>
+                  <h2 className="text-3xl font-bold academy-text-gradient">
+                    {selectedTemplate.title}
+                  </h2>
+                </div>
                 <Button 
                   variant="outline" 
                   onClick={() => setSelectedTemplate(null)}
+                  className="academy-btn-secondary"
                 >
-                  ← Back to Templates
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  Back to Templates
                 </Button>
               </div>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>Fill in the Details</CardTitle>
-                  <CardDescription>
-                    Complete the form below to personalize your email
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
+              <div className="academy-glass-card p-8 rounded-3xl">
+                <div className="mb-6">
+                  <h3 className="text-xl font-bold text-white mb-2">Customize Your Email</h3>
+                  <p className="academy-text-muted">
+                    Fill in the details below to personalize your professional email
+                  </p>
+                </div>
+                <div className="space-y-6">
                   {selectedTemplate.placeholders.map((placeholder) => (
                     <div key={placeholder}>
-                      <label htmlFor={placeholder} className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor={placeholder} className="block text-sm font-medium text-white mb-3">
                         {placeholder}
                       </label>
                       {placeholder.toLowerCase().includes('body') || placeholder.toLowerCase().includes('description') || placeholder.toLowerCase().includes('achievement') ? (
@@ -216,7 +235,8 @@ const EmailBuilder: React.FC = () => {
                           value={emailData[placeholder] || ''}
                           onChange={(e) => handleInputChange(placeholder, e.target.value)}
                           placeholder={`Enter ${placeholder.toLowerCase()}`}
-                          rows={3}
+                          rows={4}
+                          className="academy-input min-h-[120px] resize-none"
                         />
                       ) : (
                         <Input
@@ -224,55 +244,54 @@ const EmailBuilder: React.FC = () => {
                           value={emailData[placeholder] || ''}
                           onChange={(e) => handleInputChange(placeholder, e.target.value)}
                           placeholder={`Enter ${placeholder.toLowerCase()}`}
+                          className="academy-input h-12"
                         />
                       )}
                     </div>
                   ))}
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
 
             {/* Preview Section */}
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-gray-900">Email Preview</h2>
+            <div className="space-y-8">
+              <h2 className="text-3xl font-bold academy-text-gradient">Email Preview</h2>
               
-              <Card>
-                <CardHeader>
-                  <CardTitle>Subject Line</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="bg-gray-50 p-4 rounded-lg border">
-                    <p className="font-medium">{generatedEmail.subject}</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="academy-glass-card p-6 rounded-3xl">
+                <h3 className="text-lg font-bold text-white mb-4">Subject Line</h3>
+                <div className="bg-academy-bg-tertiary/50 p-4 rounded-xl border border-academy-primary/20">
+                  <p className="font-medium text-white">{generatedEmail.subject}</p>
+                </div>
+              </div>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>Email Body</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="bg-gray-50 p-4 rounded-lg border">
-                    <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed">
-                      {generatedEmail.body}
-                    </pre>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="academy-glass-card p-6 rounded-3xl">
+                <h3 className="text-lg font-bold text-white mb-4">Email Body</h3>
+                <div className="bg-academy-bg-tertiary/50 p-6 rounded-xl border border-academy-primary/20">
+                  <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed academy-text-light">
+                    {generatedEmail.body}
+                  </pre>
+                </div>
+              </div>
 
               <div className="flex space-x-4">
                 <Button 
                   onClick={() => copyToClipboard(`Subject: ${generatedEmail.subject}\n\n${generatedEmail.body}`)}
-                  className="flex-1"
+                  className="academy-btn-primary flex-1 py-3"
                 >
-                  📋 Copy Email
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                  </svg>
+                  Copy Email
                 </Button>
                 <Button 
                   variant="outline" 
                   onClick={downloadAsText}
-                  className="flex-1"
+                  className="academy-btn-secondary flex-1 py-3"
                 >
-                  💾 Download
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Download
                 </Button>
               </div>
             </div>

@@ -22,63 +22,63 @@ export default function ServicesPage() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  // Mock services data (replace with API call later)
+  // Mock academy programs data
   const mockServices: Service[] = [
     {
       _id: '1',
-      title: 'Career Consultation',
-      description: 'One-on-one career guidance and strategic planning sessions with industry experts.',
-      content: 'Comprehensive career assessment, goal setting, and personalized action plan development.',
-      category: 'consulting',
-      price: 150,
-      duration: '2 hours',
-      features: ['Personalized Career Assessment', 'Industry Insights', 'Goal Setting', 'Action Plan'],
+      title: 'Full-Stack Development Bootcamp',
+      description: 'Comprehensive 16-week program covering modern web development from frontend to backend.',
+      content: 'Master React, Node.js, databases, and deploy production-ready applications.',
+      category: 'development',
+      price: 12999,
+      duration: '16 weeks',
+      features: ['React & Next.js', 'Node.js & Express', 'Database Design', 'Project Portfolio', 'Job Placement'],
       isActive: true,
       createdAt: '2024-01-01'
     },
     {
       _id: '2',
-      title: 'Resume Optimization',
-      description: 'Professional resume writing and optimization for ATS systems and recruiters.',
-      content: 'Expert resume review, keyword optimization, and format enhancement for maximum impact.',
-      category: 'resume',
-      price: 99,
-      duration: '3-5 days',
-      features: ['ATS Optimization', 'Keyword Enhancement', 'Professional Formatting', 'Cover Letter'],
+      title: 'Data Science & AI Program',
+      description: 'Learn Python, machine learning, and AI to become a data science professional.',
+      content: 'Hands-on projects with real datasets, machine learning algorithms, and AI applications.',
+      category: 'data-science',
+      price: 14999,
+      duration: '20 weeks',
+      features: ['Python & R', 'Machine Learning', 'Deep Learning', 'Data Visualization', 'Industry Projects'],
       isActive: true,
       createdAt: '2024-01-01'
     },
     {
       _id: '3',
-      title: 'Interview Coaching',
-      description: 'Comprehensive interview preparation and practice sessions with feedback.',
-      content: 'Mock interviews, behavioral question practice, and confidence building techniques.',
-      category: 'coaching',
-      price: 120,
-      duration: '1.5 hours',
-      features: ['Mock Interviews', 'Behavioral Questions', 'Confidence Building', 'Follow-up Support'],
+      title: 'Digital Marketing Mastery',
+      description: 'Complete digital marketing course covering SEO, social media, and paid advertising.',
+      content: 'Learn to create effective marketing campaigns and grow businesses online.',
+      category: 'marketing',
+      price: 7999,
+      duration: '12 weeks',
+      features: ['SEO & SEM', 'Social Media Marketing', 'Analytics', 'Content Strategy', 'Campaign Management'],
       isActive: true,
       createdAt: '2024-01-01'
     },
     {
       _id: '4',
-      title: 'LinkedIn Profile Optimization',
-      description: 'Professional LinkedIn profile enhancement to increase visibility and connections.',
-      content: 'Profile optimization, content strategy, and networking guidance for LinkedIn success.',
-      category: 'social',
-      price: 75,
-      duration: '2-3 days',
-      features: ['Profile Optimization', 'Headline Writing', 'Content Strategy', 'Network Building'],
+      title: 'UI/UX Design Professional',
+      description: 'Master user experience design and create beautiful, functional digital products.',
+      content: 'Design thinking, prototyping, user research, and portfolio development.',
+      category: 'design',
+      price: 9999,
+      duration: '14 weeks',
+      features: ['Design Systems', 'Figma/Sketch', 'User Research', 'Prototyping', 'Portfolio Building'],
       isActive: true,
       createdAt: '2024-01-01'
     },
     {
       _id: '5',
-      title: 'Job Search Strategy',
-      description: 'Comprehensive job search planning and execution strategy development.',
-      content: 'Target company research, application strategy, and networking plan development.',
-      category: 'strategy',
-      price: 200,
+      title: 'DevOps & Cloud Engineering',
+      description: 'Learn cloud platforms, containerization, and automation for modern DevOps practices.',
+      content: 'AWS/Azure certification path with hands-on infrastructure management.',
+      category: 'devops',
+      price: 11999,
       duration: '1 week',
       features: ['Market Analysis', 'Target Companies', 'Application Strategy', 'Networking Plan'],
       isActive: true,
@@ -99,13 +99,13 @@ export default function ServicesPage() {
   ];
 
   const categories = [
-    { id: 'all', name: 'All Services', icon: '🎯' },
-    { id: 'consulting', name: 'Career Consulting', icon: '💼' },
-    { id: 'resume', name: 'Resume Services', icon: '📄' },
-    { id: 'coaching', name: 'Interview Coaching', icon: '🎤' },
-    { id: 'social', name: 'Social Media', icon: '🔗' },
-    { id: 'strategy', name: 'Job Strategy', icon: '📈' },
-    { id: 'negotiation', name: 'Negotiation', icon: '💰' }
+    { id: 'all', name: 'All Programs', icon: '🎯' },
+    { id: 'development', name: 'Development', icon: '�' },
+    { id: 'data', name: 'Data Science', icon: '�' },
+    { id: 'marketing', name: 'Digital Marketing', icon: '📱' },
+    { id: 'design', name: 'UI/UX Design', icon: '🎨' },
+    { id: 'devops', name: 'DevOps', icon: '☁️' },
+    { id: 'negotiation', name: 'Leadership', icon: '�' }
   ];
 
   useEffect(() => {
@@ -132,187 +132,204 @@ export default function ServicesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen academy-bg relative">
+      <div className="academy-bg-pattern"></div>
+      
       {/* Hero Section */}
-      <section className="bg-linear-to-r from-blue-600 to-purple-700 text-white py-20">
+      <section className="relative z-10 py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">Our Services</h1>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Comprehensive career development services designed to accelerate your professional growth 
-            and help you achieve your career goals with confidence.
+          <div className="flex justify-center mb-6">
+            <div className="academy-gradient p-4 rounded-2xl shadow-xl">
+              <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+          </div>
+          <h1 className="text-4xl font-bold academy-text-gradient mb-6">Academy Programs</h1>
+          <p className="text-lg academy-text-muted mb-8 max-w-3xl mx-auto leading-relaxed">
+            Transform your career with our comprehensive tech education programs designed to provide 
+            hands-on experience and direct pathways to high-paying technology careers.
           </p>
-          <Button className="bg-white text-blue-600 hover:bg-gray-100">
-            Schedule Free Consultation
+          <Button className="academy-btn-primary px-8 py-3">
+            Start Your Journey
           </Button>
         </div>
       </section>
 
-      {/* Service Categories */}
-      <section className="py-12 bg-white">
+      {/* Program Categories */}
+      <section className="py-12 relative z-10">
         <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold academy-text-gradient text-center mb-8">Program Categories</h2>
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center space-x-2 px-6 py-3 rounded-full font-medium transition-all ${
+                className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all ${
                   selectedCategory === category.id
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'academy-gradient text-white shadow-xl'
+                    : 'academy-glass academy-text-muted hover:shadow-lg border academy-border'
                 }`}
               >
-                <span>{category.icon}</span>
-                <span>{category.name}</span>
+                <span className="text-lg">{category.icon}</span>
+                <span className="text-sm">{category.name}</span>
               </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-16">
+      {/* Programs Grid */}
+      <section className="py-16 relative z-10">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredServices.map((service) => (
-              <Card key={service._id} className="p-6 hover:shadow-xl transition-shadow">
+              <div key={service._id} className="academy-glass p-6 hover:shadow-2xl transition-all duration-300 border academy-border rounded-xl">
                 <div className="mb-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-xl font-semibold">{service.title}</h3>
-                    <span className="text-2xl font-bold text-blue-600">${service.price}</span>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-lg font-bold academy-text-primary">{service.title}</h3>
+                    <span className="text-xl font-bold academy-text-gradient">${service.price}</span>
                   </div>
-                  <p className="text-gray-600 text-sm mb-4">{service.description}</p>
+                  <p className="academy-text-muted text-sm mb-4 leading-relaxed">{service.description}</p>
                   
-                  <div className="flex items-center text-sm text-gray-500 mb-4">
-                    <span className="mr-4">⏱️ {service.duration}</span>
-                    <span className="px-2 py-1 bg-blue-100 text-blue-600 rounded-full text-xs">
+                  <div className="flex items-center text-sm academy-text-muted mb-4 space-x-3">
+                    <span className="flex items-center">
+                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      {service.duration}
+                    </span>
+                    <span className="px-3 py-1 academy-glass text-xs rounded-full academy-text-primary border academy-border">
                       {categories.find(cat => cat.id === service.category)?.name || service.category}
                     </span>
                   </div>
                 </div>
 
                 <div className="mb-6">
-                  <h4 className="font-medium mb-3">What's Included:</h4>
+                  <h4 className="font-semibold mb-3 academy-text-primary text-sm">Program Includes:</h4>
                   <ul className="space-y-2">
                     {service.features.map((feature, index) => (
-                      <li key={index} className="flex items-center text-sm">
-                        <span className="text-green-500 mr-2">✓</span>
-                        {feature}
+                      <li key={index} className="flex items-start text-sm">
+                        <span className="text-green-400 mr-2 mt-0.5">✓</span>
+                        <span className="academy-text-muted">{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
                 <div className="flex flex-col space-y-3">
-                  <Button className="w-full">
-                    Get Started
+                  <Button className="w-full academy-btn-primary text-sm">
+                    Enroll Now
                   </Button>
-                  <Button variant="outline" className="w-full">
-                    Learn More
+                  <Button variant="outline" className="w-full academy-btn-secondary text-sm">
+                    View Curriculum
                   </Button>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
 
           {filteredServices.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">No services found in this category.</p>
+              <p className="academy-text-muted text-lg">No programs found in this category.</p>
             </div>
           )}
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-16 bg-white">
+      {/* Learning Path Section */}
+      <section className="py-16 relative z-10">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+          <h2 className="text-3xl font-bold academy-text-gradient text-center mb-12">Your Learning Journey</h2>
           <div className="grid md:grid-cols-4 gap-8">
             {[
               {
                 step: 1,
-                title: 'Consultation',
-                description: 'Schedule a free consultation to discuss your career goals and challenges.',
-                icon: '📞'
+                title: 'Application',
+                description: 'Apply to your chosen program and complete our skills assessment.',
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                )
               },
               {
                 step: 2,
-                title: 'Assessment',
-                description: 'We analyze your current situation and identify areas for improvement.',
-                icon: '📋'
+                title: 'Foundation',
+                description: 'Build core skills through hands-on projects and mentorship.',
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                )
               },
               {
                 step: 3,
-                title: 'Strategy',
-                description: 'Develop a customized action plan tailored to your specific needs.',
-                icon: '🎯'
+                title: 'Portfolio',
+                description: 'Create real-world projects that showcase your new abilities.',
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                )
               },
               {
                 step: 4,
-                title: 'Implementation',
-                description: 'Execute the plan with our guidance and ongoing support.',
-                icon: '🚀'
+                title: 'Career',
+                description: 'Graduate job-ready with career support and industry connections.',
+                icon: (
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                )
               }
             ].map((item, index) => (
-              <Card key={index} className="p-6 text-center">
-                <div className="text-4xl mb-4">{item.icon}</div>
-                <div className="text-lg font-semibold text-blue-600 mb-2">Step {item.step}</div>
-                <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
-              </Card>
+              <div key={index} className="academy-glass p-6 text-center border academy-border rounded-xl">
+                <div className="academy-gradient w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  {item.icon}
+                </div>
+                <div className="text-lg font-bold academy-text-gradient mb-2">Step {item.step}</div>
+                <h3 className="text-lg font-bold mb-3 academy-text-primary">{item.title}</h3>
+                <p className="academy-text-muted text-sm leading-relaxed">{item.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 relative z-10">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold academy-text-gradient text-center mb-12">Frequently Asked Questions</h2>
           <div className="max-w-3xl mx-auto space-y-6">
             {[
               {
-                question: 'How long does the process typically take?',
-                answer: 'The timeline varies depending on the service. Most consultations are completed within 1-2 weeks, while comprehensive career overhauls may take 4-6 weeks.'
+                question: 'How long are the bootcamp programs?',
+                answer: 'Our programs range from 12-20 weeks depending on the track. Full-Stack Development is 16 weeks, Data Science is 18 weeks, and UI/UX Design is 14 weeks.'
               },
               {
-                question: 'Do you offer money-back guarantees?',
-                answer: 'Yes, we offer a 30-day satisfaction guarantee. If you\'re not completely satisfied with our service, we\'ll refund your investment.'
+                question: 'Do you offer job placement assistance?',
+                answer: 'Yes! We provide comprehensive career support including resume review, interview prep, and direct connections to our hiring partner network.'
               },
               {
-                question: 'Can I combine multiple services?',
-                answer: 'Absolutely! We often recommend service packages for comprehensive career transformation. Contact us for custom pricing on combined services.'
+                question: 'What are the prerequisites for enrollment?',
+                answer: 'Most programs require basic computer literacy and problem-solving skills. Some advanced programs may require foundational knowledge in programming or design.'
               },
               {
-                question: 'Do you work with all industries?',
-                answer: 'Yes, our team has experience across all major industries including tech, healthcare, finance, marketing, and more.'
+                question: 'Are there financing options available?',
+                answer: 'Yes, we offer flexible payment plans, income share agreements (ISA), and partnerships with educational lending providers to make our programs accessible.'
               }
             ].map((faq, index) => (
-              <Card key={index} className="p-6">
-                <h3 className="text-lg font-semibold mb-3">{faq.question}</h3>
-                <p className="text-gray-600">{faq.answer}</p>
-              </Card>
+              <div key={index} className="academy-glass p-6 border academy-border rounded-xl">
+                <h3 className="text-lg font-bold mb-3 academy-text-primary">{faq.question}</h3>
+                <p className="academy-text-muted leading-relaxed">{faq.answer}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-linear-to-r from-blue-600 to-purple-700 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Accelerate Your Career?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join thousands of professionals who have transformed their careers with our expert guidance.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-white text-blue-600 hover:bg-gray-100">
-              Schedule Free Consultation
-            </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
-              View Success Stories
-            </Button>
-          </div>
-        </div>
-      </section>
+     
     </div>
   );
 }

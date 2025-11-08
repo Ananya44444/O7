@@ -976,62 +976,83 @@ const ResumeBuilder: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50 py-8">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Progress Steps */}
+    <div className="min-h-screen academy-bg py-8 relative">
+      <div className="academy-bg-pattern"></div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header Section */}
         <div className="mb-8">
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex justify-between items-center mb-8">
             <div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">Resume Builder</h1>
-              <p className="text-gray-600">Create your professional resume with our step-by-step builder</p>
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="academy-gradient p-3 rounded-2xl shadow-xl">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                    <path fillRule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3h3v1a1 1 0 102 0V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm2.5 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm2.45 4a2.5 2.5 0 10-4.9 0h4.9zM12 9a1 1 0 100 2h3a1 1 0 100-2h-3zm-1 4a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z" clipRule="evenodd"/>
+                  </svg>
+                </div>
+                <h1 className="text-5xl font-bold academy-text-gradient">Resume Builder</h1>
+              </div>
+              <p className="academy-text-muted text-xl">Build your professional resume with our academy-powered step-by-step builder</p>
             </div>
-            <div className="bg-white px-4 py-2 rounded-full shadow-md border border-gray-200">
-              <div className="text-sm font-medium text-gray-800">
+            <div className="academy-glass-card px-6 py-4 rounded-2xl">
+              <div className="text-lg font-bold text-white">
                 Step {currentStep + 1} of {steps.length}
               </div>
-              <div className="text-xs text-gray-500 text-center">
+              <div className="text-sm academy-text-muted text-center mt-1">
                 {Math.round(((currentStep + 1) / steps.length) * 100)}% Complete
+              </div>
+              <div className="w-32 h-2 bg-academy-dark-light/30 rounded-full mt-3">
+                <div 
+                  className="h-full academy-gradient rounded-full transition-all duration-500"
+                  style={{ width: `${Math.round(((currentStep + 1) / steps.length) * 100)}%` }}
+                />
               </div>
             </div>
           </div>
           
-          {/* Desktop Timeline */}
-          <div className="hidden lg:flex items-center overflow-x-auto">
+          {/* Academy Timeline */}
+          <div className="hidden lg:flex items-center overflow-x-auto academy-glass-card p-4 rounded-2xl">
             {steps.map((step, index) => (
               <div key={index} className="flex items-center shrink-0">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                  className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
                     index <= currentStep
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-600'
+                      ? 'academy-gradient text-white shadow-lg'
+                      : 'bg-academy-dark-light/30 academy-text-muted'
                   }`}
                 >
-                  {index + 1}
+                  {index <= currentStep ? (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    index + 1
+                  )}
                 </div>
-                <div className={`ml-2 text-sm ${index <= currentStep ? 'text-blue-600 font-medium' : 'text-gray-500'} whitespace-nowrap`}>
+                <div className={`ml-3 text-sm ${index <= currentStep ? 'text-white font-medium' : 'academy-text-muted'} whitespace-nowrap`}>
                   {step}
                 </div>
                 {index < steps.length - 1 && (
-                  <div className={`mx-4 h-1 w-12 xl:w-16 ${index < currentStep ? 'bg-blue-600' : 'bg-gray-200'}`} />
+                  <div className={`mx-6 h-1 w-12 xl:w-16 rounded-full transition-all duration-300 ${index < currentStep ? 'academy-gradient' : 'bg-academy-dark-light/30'}`} />
                 )}
               </div>
             ))}
           </div>
           
           {/* Mobile Timeline */}
-          <div className="lg:hidden">
+          <div className="lg:hidden academy-glass-card p-4 rounded-2xl">
             <div className="flex items-center justify-center space-x-2 mb-4">
               {steps.map((_, index) => (
                 <div
                   key={index}
-                  className={`w-3 h-3 rounded-full ${
-                    index <= currentStep ? 'bg-blue-600' : 'bg-gray-200'
+                  className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                    index <= currentStep ? 'academy-gradient' : 'bg-academy-dark-light/30'
                   }`}
                 />
               ))}
             </div>
             <div className="text-center">
-              <div className={`text-lg font-medium ${currentStep >= 0 ? 'text-blue-600' : 'text-gray-500'}`}>
+              <div className="text-lg font-bold text-white">
                 {steps[currentStep]}
               </div>
             </div>
@@ -1039,33 +1060,33 @@ const ResumeBuilder: React.FC = () => {
         </div>
 
         {/* Step Content */}
-        <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
+        <Card className="academy-glass-card border-0 shadow-2xl">
           <CardContent className="p-8 md:p-12">
             {renderStepContent()}
           </CardContent>
         </Card>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between mt-10">
+        <div className="flex justify-between mt-12">
           <Button
             variant="outline"
             onClick={prevStep}
             disabled={currentStep === 0}
-            className="px-8 py-3 text-base font-medium hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="academy-btn-secondary px-8 py-4 text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            Previous
+            Previous Step
           </Button>
           
           {currentStep < steps.length - 1 ? (
             <Button
               onClick={nextStep}
               disabled={currentStep === 0 && !selectedTemplate}
-              className="px-8 py-3 text-base font-medium bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="academy-btn-primary px-8 py-4 text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Next
+              Continue Journey
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
