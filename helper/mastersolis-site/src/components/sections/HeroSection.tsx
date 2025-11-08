@@ -19,19 +19,6 @@ const HeroSection: React.FC = () => {
             job opportunities, resume building, and career advancement.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/careers">
-              <Button size="lg" className="text-lg px-8 py-3">
-                Explore Careers
-              </Button>
-            </Link>
-            <Link href="/resume-builder">
-              <Button variant="outline" size="lg" className="text-lg px-8 py-3">
-                Build Resume
-              </Button>
-            </Link>
-          </div>
 
           {/* Stats */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">

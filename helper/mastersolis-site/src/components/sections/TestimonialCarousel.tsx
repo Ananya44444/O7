@@ -24,7 +24,7 @@ const TestimonialCarousel: React.FC = () => {
     const mockTestimonials: Testimonial[] = [
       {
         _id: '1',
-        name: 'Sarah Johnson',
+        name: 'Ananya',
         position: 'Senior Developer',
         company: 'TechCorp',
         content: 'MasterSolis helped me land my dream job! The resume builder and career guidance were invaluable. The platform is intuitive and the results speak for themselves.',
@@ -32,7 +32,7 @@ const TestimonialCarousel: React.FC = () => {
       },
       {
         _id: '2',
-        name: 'Michael Chen',
+        name: 'Twarita',
         position: 'Product Manager',
         company: 'InnovateCo',
         content: 'The AI-powered resume optimization gave me the edge I needed. I got 3x more interview calls after using their platform. Highly recommended!',
@@ -40,7 +40,7 @@ const TestimonialCarousel: React.FC = () => {
       },
       {
         _id: '3',
-        name: 'Emily Rodriguez',
+        name: 'Wamika',
         position: 'UX Designer',
         company: 'DesignStudio',
         content: 'Professional, efficient, and results-driven. MasterSolis transformed my job search experience and helped me transition into a better role.',
@@ -48,7 +48,7 @@ const TestimonialCarousel: React.FC = () => {
       },
       {
         _id: '4',
-        name: 'David Thompson',
+        name: 'Tanmay',
         position: 'Data Scientist',
         company: 'DataTech',
         content: 'The technology solutions provided by MasterSolis are top-notch. Their team understands modern career challenges and provides real solutions.',

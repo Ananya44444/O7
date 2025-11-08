@@ -48,28 +48,28 @@ export default function AboutPage() {
 
   const teamMembers = [
     {
-      name: 'Sarah Johnson',
+      name: 'Ananya',
       role: 'Chief Executive Officer',
       bio: 'Visionary leader with 15+ years in HR technology and career development.',
       image: '/team/ceo.jpg',
       linkedin: '#'
     },
     {
-      name: 'Michael Chen',
+      name: 'Twarita',
       role: 'Chief Technology Officer',
       bio: 'Tech innovator specializing in AI and machine learning applications.',
       image: '/team/cto.jpg',
       linkedin: '#'
     },
     {
-      name: 'Emily Rodriguez',
+      name: 'Wamika',
       role: 'Head of Talent Acquisition',
       bio: 'Expert recruiter with deep understanding of modern hiring practices.',
       image: '/team/head-talent.jpg',
       linkedin: '#'
     },
     {
-      name: 'David Kim',
+      name: 'Tanmay',
       role: 'Lead Product Designer',
       bio: 'UX/UI specialist focused on creating intuitive career development tools.',
       image: '/team/designer.jpg',
@@ -277,32 +277,11 @@ export default function AboutPage() {
                     <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
                     <p className="text-blue-600 font-medium mb-3">{member.role}</p>
                     <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
-                    <Button variant="outline" size="sm">
-                      Connect
-                    </Button>
                   </Card>
                 ))}
               </div>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="bg-linear-to-r from-blue-600 to-purple-700 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Career?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join thousands of professionals who have already accelerated their careers with MasterSolis.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-white text-blue-600 hover:bg-gray-100">
-              Get Started Today
-            </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
-              Learn More
-            </Button>
-          </div>
         </div>
       </section>
     </div>

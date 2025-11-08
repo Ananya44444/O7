@@ -259,29 +259,103 @@ const ResumeBuilder: React.FC = () => {
       <head>
         <title>${resumeData.personalInfo.name} - Resume</title>
         <style>
-          body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
-          .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px; margin-bottom: 30px; }
-          .section { margin-bottom: 25px; }
-          .section h2 { color: #333; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-          .contact-info { display: flex; justify-content: center; gap: 20px; margin-top: 10px; }
-          .experience-item, .project-item, .education-item { margin-bottom: 15px; }
-          .skills { display: flex; flex-wrap: wrap; gap: 10px; }
-          .skill-tag { background: #f0f0f0; padding: 5px 10px; border-radius: 15px; font-size: 0.9em; }
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 40px; 
+            line-height: 1.6; 
+            color: #333;
+            background: #f8f9fa;
+          }
+          .container { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto; }
+          .header { 
+            text-align: center; 
+            border-bottom: 3px solid #2563eb; 
+            padding-bottom: 25px; 
+            margin-bottom: 35px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 30px;
+            border-radius: 8px;
+            margin: -20px -20px 35px -20px;
+          }
+          .header h1 { color: #1e293b; font-size: 2.5em; margin-bottom: 15px; font-weight: 700; }
+          .contact-info { 
+            display: flex; 
+            justify-content: center; 
+            gap: 25px; 
+            margin-top: 15px;
+            flex-wrap: wrap;
+            font-size: 1.1em;
+          }
+          .section { margin-bottom: 35px; }
+          .section h2 { 
+            color: #1e293b; 
+            border-bottom: 2px solid #3b82f6; 
+            padding-bottom: 8px; 
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            font-weight: 600;
+          }
+          .experience-item, .project-item, .education-item { 
+            margin-bottom: 25px; 
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+          }
+          .experience-item h3, .project-item h3, .education-item h3 { 
+            color: #1e293b; 
+            font-size: 1.2em; 
+            margin-bottom: 5px;
+            font-weight: 600;
+          }
+          .experience-item .duration, .education-item .year { 
+            color: #3b82f6; 
+            font-weight: 500; 
+            margin-bottom: 10px;
+          }
+          .skills { display: flex; flex-wrap: wrap; gap: 12px; }
+          .skill-tag { 
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8); 
+            color: white;
+            padding: 8px 16px; 
+            border-radius: 25px; 
+            font-size: 0.9em;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+          }
+          .project-tech { 
+            background: #e0f2fe; 
+            color: #0277bd; 
+            padding: 4px 8px; 
+            border-radius: 12px; 
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 8px;
+          }
+          .achievements ul { padding-left: 20px; }
+          .achievements li { margin-bottom: 8px; color: #475569; }
+          @media print {
+            body { margin: 0; background: white; }
+            .container { box-shadow: none; }
+          }
         </style>
       </head>
       <body>
-        <div class="header">
-          <h1>${resumeData.personalInfo.name}</h1>
-          <div class="contact-info">
-            <span>📧 ${resumeData.personalInfo.email}</span>
-            <span>📱 ${resumeData.personalInfo.phone}</span>
-            <span>📍 ${resumeData.personalInfo.location}</span>
+        <div class="container">
+          <div class="header">
+            <h1>${resumeData.personalInfo.name}</h1>
+            <div class="contact-info">
+              <span>📧 ${resumeData.personalInfo.email}</span>
+              <span>📱 ${resumeData.personalInfo.phone}</span>
+              <span>📍 ${resumeData.personalInfo.location}</span>
+            </div>
+            <div class="contact-info">
+              <span>🔗 ${resumeData.personalInfo.linkedin}</span>
+              <span>💻 ${resumeData.personalInfo.github}</span>
+            </div>
           </div>
-          <div class="contact-info">
-            <span>🔗 ${resumeData.personalInfo.linkedin}</span>
-            <span>💻 ${resumeData.personalInfo.github}</span>
-          </div>
-        </div>
 
         ${resumeData.summary ? `
         <div class="section">
@@ -305,13 +379,13 @@ const ResumeBuilder: React.FC = () => {
 
         ${resumeData.projects.length > 0 ? `
         <div class="section">
-          <h2>Projects</h2>
+          <h2>🚀 Projects</h2>
           ${resumeData.projects.map(proj => `
             <div class="project-item">
               <h3>${proj.title}</h3>
               <p>${proj.description}</p>
-              <p><strong>Tech:</strong> ${proj.tech}</p>
-              ${proj.link ? `<p><strong>Link:</strong> ${proj.link}</p>` : ''}
+              ${proj.tech ? `<div class="project-tech">Technologies: ${proj.tech}</div>` : ''}
+              ${proj.link ? `<p><strong>🔗 Link:</strong> <a href="${proj.link}" style="color: #3b82f6;">${proj.link}</a></p>` : ''}
             </div>
           `).join('')}
         </div>
@@ -332,7 +406,7 @@ const ResumeBuilder: React.FC = () => {
 
         ${resumeData.skills.length > 0 ? `
         <div class="section">
-          <h2>Skills</h2>
+          <h2>🔧 Skills</h2>
           <div class="skills">
             ${resumeData.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
           </div>
@@ -340,13 +414,14 @@ const ResumeBuilder: React.FC = () => {
         ` : ''}
 
         ${resumeData.achievements.filter(a => a.trim()).length > 0 ? `
-        <div class="section">
-          <h2>Achievements</h2>
+        <div class="section achievements">
+          <h2>🏆 Achievements</h2>
           <ul>
             ${resumeData.achievements.filter(a => a.trim()).map(ach => `<li>${ach}</li>`).join('')}
           </ul>
         </div>
         ` : ''}
+        </div>
       </body>
       </html>
     `;
@@ -383,21 +458,29 @@ const ResumeBuilder: React.FC = () => {
               <h2 className="text-2xl font-bold mb-4">Choose Your Resume Template</h2>
               <p className="text-gray-600">Select a template that best fits your style</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {resumeTemplates.map(template => (
                 <Card 
                   key={template.id}
-                  className={`cursor-pointer transition-all ${
+                  className={`cursor-pointer transition-all duration-300 transform hover:scale-105 ${
                     selectedTemplate === template.id 
-                      ? 'ring-2 ring-blue-500 bg-blue-50' 
-                      : 'hover:shadow-lg'
+                      ? 'ring-3 ring-blue-500 bg-blue-50 shadow-xl border-blue-200' 
+                      : 'hover:shadow-xl hover:border-gray-300 bg-white'
                   }`}
                   onClick={() => setSelectedTemplate(template.id)}
                 >
-                  <CardHeader className="text-center">
-                    <div className="text-6xl mb-4">{template.preview}</div>
-                    <CardTitle>{template.name}</CardTitle>
-                    <CardDescription>{template.description}</CardDescription>
+                  <CardHeader className="text-center p-8">
+                    <div className="text-7xl mb-6 transform transition-transform hover:rotate-3">{template.preview}</div>
+                    <CardTitle className="text-xl font-bold text-gray-800">{template.name}</CardTitle>
+                    <CardDescription className="text-gray-600 mt-2 leading-relaxed">{template.description}</CardDescription>
+                    {selectedTemplate === template.id && (
+                      <div className="mt-4 flex items-center justify-center text-blue-600">
+                        <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        Selected
+                      </div>
+                    )}
                   </CardHeader>
                 </Card>
               ))}
@@ -407,11 +490,18 @@ const ResumeBuilder: React.FC = () => {
 
       case 1: // Personal Information
         return (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold">Personal Information</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium mb-2">Full Name *</label>
+          <div className="space-y-8">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">Personal Information</h2>
+              <p className="text-gray-600">Tell us about yourself to get started</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <span className="flex items-center">
+                    👤 Full Name *
+                  </span>
+                </label>
                 <Input
                   value={resumeData.personalInfo.name}
                   onChange={(e) => setResumeData(prev => ({
@@ -419,10 +509,15 @@ const ResumeBuilder: React.FC = () => {
                     personalInfo: { ...prev.personalInfo, name: e.target.value }
                   }))}
                   placeholder="John Doe"
+                  className="h-12 text-base border-2 border-gray-200 focus:border-blue-500 transition-colors"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Email *</label>
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <span className="flex items-center">
+                    📧 Email *
+                  </span>
+                </label>
                 <Input
                   type="email"
                   value={resumeData.personalInfo.email}
@@ -431,21 +526,38 @@ const ResumeBuilder: React.FC = () => {
                     personalInfo: { ...prev.personalInfo, email: e.target.value }
                   }))}
                   placeholder="john@example.com"
+                  className="h-12 text-base border-2 border-gray-200 focus:border-blue-500 transition-colors"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Phone</label>
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <span className="flex items-center">
+                    📱 Phone
+                  </span>
+                </label>
                 <Input
                   value={resumeData.personalInfo.phone}
-                  onChange={(e) => setResumeData(prev => ({
-                    ...prev,
-                    personalInfo: { ...prev.personalInfo, phone: e.target.value }
-                  }))}
+                  onChange={(e) => {
+                    // Allow only numbers, spaces, hyphens, parentheses, and plus sign
+                    const value = e.target.value.replace(/[^0-9\s\-\(\)\+]/g, '');
+                    setResumeData(prev => ({
+                      ...prev,
+                      personalInfo: { ...prev.personalInfo, phone: value }
+                    }));
+                  }}
                   placeholder="+1 (555) 123-4567"
+                  className="h-12 text-base border-2 border-gray-200 focus:border-blue-500 transition-colors"
                 />
+                <div className="text-xs text-gray-500 mt-1">
+                  Only numbers, spaces, hyphens, parentheses, and + allowed
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Location</label>
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <span className="flex items-center">
+                    📍 Location
+                  </span>
+                </label>
                 <Input
                   value={resumeData.personalInfo.location}
                   onChange={(e) => setResumeData(prev => ({
@@ -453,10 +565,15 @@ const ResumeBuilder: React.FC = () => {
                     personalInfo: { ...prev.personalInfo, location: e.target.value }
                   }))}
                   placeholder="San Francisco, CA"
+                  className="h-12 text-base border-2 border-gray-200 focus:border-blue-500 transition-colors"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">LinkedIn</label>
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <span className="flex items-center">
+                    🔗 LinkedIn
+                  </span>
+                </label>
                 <Input
                   value={resumeData.personalInfo.linkedin}
                   onChange={(e) => setResumeData(prev => ({
@@ -464,10 +581,15 @@ const ResumeBuilder: React.FC = () => {
                     personalInfo: { ...prev.personalInfo, linkedin: e.target.value }
                   }))}
                   placeholder="linkedin.com/in/johndoe"
+                  className="h-12 text-base border-2 border-gray-200 focus:border-blue-500 transition-colors"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">GitHub</label>
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                  <span className="flex items-center">
+                    💻 GitHub
+                  </span>
+                </label>
                 <Input
                   value={resumeData.personalInfo.github}
                   onChange={(e) => setResumeData(prev => ({
@@ -475,6 +597,7 @@ const ResumeBuilder: React.FC = () => {
                     personalInfo: { ...prev.personalInfo, github: e.target.value }
                   }))}
                   placeholder="github.com/johndoe"
+                  className="h-12 text-base border-2 border-gray-200 focus:border-blue-500 transition-colors"
                 />
               </div>
             </div>
@@ -769,44 +892,50 @@ const ResumeBuilder: React.FC = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="border rounded-lg p-6 bg-white">
+                <div className="border-2 border-gray-200 rounded-xl p-8 bg-white shadow-lg">
                   {/* Resume Preview */}
-                  <div className="text-center border-b pb-4 mb-6">
-                    <h1 className="text-2xl font-bold">{resumeData.personalInfo.name}</h1>
-                    <div className="text-sm text-gray-600 mt-2">
-                      {resumeData.personalInfo.email} • {resumeData.personalInfo.phone} • {resumeData.personalInfo.location}
+                  <div className="text-center border-b-2 border-gray-200 pb-6 mb-8">
+                    <h1 className="text-3xl font-bold text-gray-900 mb-3">{resumeData.personalInfo.name}</h1>
+                    <div className="text-base text-gray-600 mb-2 space-x-2">
+                      <span>📧 {resumeData.personalInfo.email}</span>
+                      <span>•</span>
+                      <span>📱 {resumeData.personalInfo.phone}</span>
+                      <span>•</span>
+                      <span>📍 {resumeData.personalInfo.location}</span>
                     </div>
-                    <div className="text-sm text-gray-600">
-                      {resumeData.personalInfo.linkedin} • {resumeData.personalInfo.github}
+                    <div className="text-base text-gray-600 space-x-2">
+                      <span>🔗 {resumeData.personalInfo.linkedin}</span>
+                      <span>•</span>
+                      <span>💻 {resumeData.personalInfo.github}</span>
                     </div>
                   </div>
                   
                   {resumeData.summary && (
-                    <div className="mb-6">
-                      <h2 className="text-lg font-semibold border-b mb-2">Summary</h2>
-                      <p className="text-sm">{resumeData.summary}</p>
+                    <div className="mb-8">
+                      <h2 className="text-xl font-bold text-gray-900 border-b-2 border-blue-200 pb-2 mb-4">📝 Summary</h2>
+                      <p className="text-base text-gray-700 leading-relaxed">{resumeData.summary}</p>
                     </div>
                   )}
                   
                   {resumeData.experience.length > 0 && (
-                    <div className="mb-6">
-                      <h2 className="text-lg font-semibold border-b mb-2">Experience</h2>
+                    <div className="mb-8">
+                      <h2 className="text-xl font-bold text-gray-900 border-b-2 border-blue-200 pb-2 mb-4">💼 Experience</h2>
                       {resumeData.experience.map((exp, index) => (
-                        <div key={index} className="mb-3">
-                          <div className="font-medium">{exp.role} at {exp.company}</div>
-                          <div className="text-sm text-gray-600">{exp.duration}</div>
-                          <p className="text-sm mt-1">{exp.description}</p>
+                        <div key={index} className="mb-6 p-4 bg-gray-50 rounded-lg">
+                          <div className="font-bold text-lg text-gray-900">{exp.role} at {exp.company}</div>
+                          <div className="text-sm text-blue-600 font-medium mb-2">{exp.duration}</div>
+                          <p className="text-base text-gray-700 leading-relaxed">{exp.description}</p>
                         </div>
                       ))}
                     </div>
                   )}
                   
                   {resumeData.skills.length > 0 && (
-                    <div className="mb-4">
-                      <h2 className="text-lg font-semibold border-b mb-2">Skills</h2>
-                      <div className="flex flex-wrap gap-1">
+                    <div className="mb-6">
+                      <h2 className="text-xl font-bold text-gray-900 border-b-2 border-blue-200 pb-2 mb-4">🔧 Skills</h2>
+                      <div className="flex flex-wrap gap-2">
                         {resumeData.skills.map((skill, index) => (
-                          <span key={index} className="px-2 py-1 bg-gray-100 rounded text-xs">
+                          <span key={index} className="px-3 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
                             {skill}
                           </span>
                         ))}
@@ -815,12 +944,25 @@ const ResumeBuilder: React.FC = () => {
                   )}
                 </div>
                 
-                <div className="mt-6 flex gap-4">
-                  <Button onClick={downloadResume} className="flex-1">
-                    💾 Download Resume (HTML)
+                <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                  <Button 
+                    onClick={downloadResume} 
+                    className="flex-1 py-4 text-lg font-medium bg-green-600 hover:bg-green-700 transition-colors"
+                  >
+                    <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Download Resume (HTML)
                   </Button>
-                  <Button variant="outline" onClick={() => setCurrentStep(0)} className="flex-1">
-                    🔄 Start Over
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setCurrentStep(0)} 
+                    className="flex-1 py-4 text-lg font-medium border-2 hover:bg-gray-50 transition-colors"
+                  >
+                    <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Start Over
                   </Button>
                 </div>
               </CardContent>
@@ -834,14 +976,22 @@ const ResumeBuilder: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50 py-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Progress Steps */}
         <div className="mb-8">
-          <div className="flex justify-between items-center mb-4">
-            <h1 className="text-3xl font-bold text-gray-900">Resume Builder</h1>
-            <div className="text-sm text-gray-600">
-              Step {currentStep + 1} of {steps.length}
+          <div className="flex justify-between items-center mb-6">
+            <div>
+              <h1 className="text-4xl font-bold text-gray-900 mb-2">Resume Builder</h1>
+              <p className="text-gray-600">Create your professional resume with our step-by-step builder</p>
+            </div>
+            <div className="bg-white px-4 py-2 rounded-full shadow-md border border-gray-200">
+              <div className="text-sm font-medium text-gray-800">
+                Step {currentStep + 1} of {steps.length}
+              </div>
+              <div className="text-xs text-gray-500 text-center">
+                {Math.round(((currentStep + 1) / steps.length) * 100)}% Complete
+              </div>
             </div>
           </div>
           
@@ -889,28 +1039,36 @@ const ResumeBuilder: React.FC = () => {
         </div>
 
         {/* Step Content */}
-        <Card>
-          <CardContent className="p-8">
+        <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
+          <CardContent className="p-8 md:p-12">
             {renderStepContent()}
           </CardContent>
         </Card>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between mt-8">
+        <div className="flex justify-between mt-10">
           <Button
             variant="outline"
             onClick={prevStep}
             disabled={currentStep === 0}
+            className="px-8 py-3 text-base font-medium hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            ← Previous
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Previous
           </Button>
           
           {currentStep < steps.length - 1 ? (
             <Button
               onClick={nextStep}
               disabled={currentStep === 0 && !selectedTemplate}
+              className="px-8 py-3 text-base font-medium bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Next →
+              Next
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </Button>
           ) : null}
         </div>

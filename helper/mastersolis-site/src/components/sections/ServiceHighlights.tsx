@@ -111,7 +111,7 @@ const ServiceHighlights: React.FC = () => {
                   ))}
                 </ul>
                 <div className="text-center">
-                  <Link href={`/services/${service.slug}`}>
+                  <Link href="/services">
                     <Button variant="outline" size="sm" className="w-full">
                       Learn More
                     </Button>

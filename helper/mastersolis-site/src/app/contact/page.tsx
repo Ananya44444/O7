@@ -76,7 +76,7 @@ export default function ContactPage() {
             <Card className="p-6 text-center hover:shadow-lg transition-shadow">
               <div className="text-4xl mb-4">📞</div>
               <h3 className="text-xl font-semibold mb-2">Phone</h3>
-              <p className="text-gray-600 mb-2">+1 (555) 123-4567</p>
+              <p className="text-gray-600 mb-2">+91 9876543210</p>
               <p className="text-sm text-gray-500">Mon-Fri, 9AM-6PM EST</p>
             </Card>
 
@@ -90,7 +90,7 @@ export default function ContactPage() {
             <Card className="p-6 text-center hover:shadow-lg transition-shadow">
               <div className="text-4xl mb-4">📍</div>
               <h3 className="text-xl font-semibold mb-2">Office</h3>
-              <p className="text-gray-600 mb-2">123 Business Ave<br/>Suite 100<br/>New York, NY 10001</p>
+              <p className="text-gray-600 mb-2">DSCE<br/>Bangalore, BLR-560078</p>
             </Card>
           </div>
 
@@ -144,7 +144,7 @@ export default function ContactPage() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="+91 9876543210"
                     />
                   </div>
                 </div>
